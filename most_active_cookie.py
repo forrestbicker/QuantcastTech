@@ -3,7 +3,6 @@
 # 1/29/22
 
 import sys
-import os.path
 from typing import List
 
 def get_cookies(lines: List[str], date: str) -> List[str]:
@@ -15,16 +14,16 @@ def get_cookies(lines: List[str], date: str) -> List[str]:
     # iterate through log file and count the number of times each cookie appears
     cookieCount = {}  # mapping from cookie to number of occurences
     for line in lines:
-            cookie, timestamp = line.split(',')
-            if timestamp[:10] == date:  # only count cookies from the given date
-                if cookie not in cookieCount:
-                    cookieCount[cookie] = 0
+        cookie, timestamp = line.split(',')
+        if timestamp[:10] == date:  # only count cookies from the given date
+            if cookie not in cookieCount:
+                cookieCount[cookie] = 0
 
-                cookieCount[cookie] += 1
+            cookieCount[cookie] += 1
 
     # print cookie with most occurences, including those tied for most occurences
     # runs in in O(n) time and O(n) space
-    maxOccurences = max(cookieCount.values())
+    maxOccurences = max(cookieCount.values()) if cookieCount else 0
     return [cookie for cookie in cookieCount if cookieCount[cookie] == maxOccurences]
 
 def most_active_cookies_from_file(filepath: str, date: str) -> List[str]:
@@ -44,17 +43,16 @@ def most_active_cookies_from_file(filepath: str, date: str) -> List[str]:
     except AssertionError:
         print("Input file is not in the correct format: header must read cookie,timestamp")
 
-    
+
 
 if __name__ == "__main__":
     try:
-        assert 3 < len(sys.argv) # ensure we have the right number of arguments
-        assert sys.argv[2] == "-d" # ensure the 2nd argument is the -d flag
+        assert 3 < len(sys.argv)  # ensure we have the right number of arguments
+        assert sys.argv[2] == "-d"  # ensure the 2nd argument is the -d flag
         filepath = sys.argv[1]
         date = sys.argv[3]
     except AssertionError:
         print("Invalid arguments! Usage: ./most_active_cookie <filepath> -d <date>")
-            
+
     for cookie in most_active_cookies_from_file(filepath, date):
         print(cookie)
-
