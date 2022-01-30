@@ -3,7 +3,7 @@
 from most_active_cookie import get_cookies, most_active_cookies_from_file
 
 # test case where one cookie is most active on the given date
-def testOneCookie():
+def test_one_cookie():
     with open('test/test_cookies.csv', 'w+') as f:
         f.write('''cookie,timestamp
 AtY0laUfhglK3lC7,2018-12-09T14:19:00+00:00
@@ -17,7 +17,7 @@ fbcn5UAVanZf6UtG,2018-12-08T09:30:00+00:00
     assert most_active_cookies_from_file('test/test_cookies.csv', "2018-12-09") == ['AtY0laUfhglK3lC7']
 
 # test case where multiple cookies are tied on the given date
-def testTie():
+def test_tie():
     with open('test/test_cookies.csv', 'w+') as f:
         f.write('''cookie,timestamp
 AtY0laUfhglK3lC7,2018-12-09T14:19:00+00:00
@@ -31,7 +31,7 @@ fbcn5UAVanZf6UtG,2018-12-08T09:30:00+00:00
     assert most_active_cookies_from_file('test/test_cookies.csv', "2018-12-09") == ['AtY0laUfhglK3lC7', '5UAVanZf6UtGyKVS']
 
 # test case where all cookies are unique (all tied) on a larger dataset
-def testUnique():
+def test_unique():
     with open('test/test_cookies.csv', 'w+') as f:
         f.write('''cookie,timestamp
 giWIc2K2tWznOrTF,2022-01-30T01:22:00+00:00
@@ -56,7 +56,7 @@ M6wK9WJ3kFvWOReI,2022-01-30T05:20:00+00:00''')
     ]
 
 # test case where no cookies occur on the given date
-def testNoCookie():
+def test_no_cookie():
     with open('test/test_cookies.csv', 'w+') as f:
         f.write('''cookie,timestamp
 nsW7NU3eXb16986r,2022-01-30T01:18:00+00:00
@@ -72,13 +72,13 @@ s9JVzV6CWW5DvcUZ,2022-01-30T05:36:00+00:00''')
     assert most_active_cookies_from_file('test/test_cookies.csv', "2022-01-31") == []
 
 # test case where input file is empty
-def testNoInput():
+def test_no_input():
     with open('test/test_cookies.csv', 'w+') as f:
         f.write('''cookie,timestamp''')
     assert most_active_cookies_from_file('test/test_cookies.csv', "2022-01-31") == []
 
 # test case where only one cookie occurs
-def testUnanimous():
+def test_unanimous():
     with open('test/test_cookies.csv', 'w+') as f:
         f.write('''cookie,timestamp
 QSwHx2ssREMUT6OX,2022-01-30T01:21:00+00:00
@@ -93,7 +93,7 @@ QSwHx2ssREMUT6OX,2022-01-30T05:17:00+00:00''')
     assert most_active_cookies_from_file('test/test_cookies.csv', "2022-01-30") == ['QSwHx2ssREMUT6OX']
 
 # test case where all cookies are unique (all tied) on a larger dataset
-def testBig():
+def test_big():
     with open('test/test_cookies.csv', 'w+') as f:
         f.write('''cookie,timestamp
 qsYV8e93We5ezhpc,2022-01-30T01:08:00+00:00
