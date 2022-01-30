@@ -1,4 +1,5 @@
 # Quantcast Tech
+[![Build Status](https://travis-ci.org/azu/travis-badge.svg?branch=master)](https://travis-ci.org/azu/travis-badge)
 
 Submission for Quantcast technical problem. Complete with automated pytest verification via Github Actions
 
