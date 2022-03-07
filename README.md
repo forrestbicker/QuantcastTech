@@ -9,3 +9,5 @@ Files in this repo:
 - `most_active_cookie.exe` compiled program for CLI usage
 - `most_active_cookie.py` uncompiled python file used to generate `most_active_cookie.exe`
 - `test_cookies.py` pytest file containg tests for GitHub automation
+
+Compiled with `pyinstaller --noconfirm --onefile --console  "most_active_cookie.py"`
